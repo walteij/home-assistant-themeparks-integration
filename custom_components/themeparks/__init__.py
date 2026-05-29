@@ -103,6 +103,10 @@ class ThemeParkAPI:
                 _LOGGER.debug("No STANDBY in item['queue']")
                 return (item[ID], {ID: item[ID], NAME: name, TIME: None})
 
+            if WAIT_TIME not in item[QUEUE][STANDBY]:
+                _LOGGER.debug("No waitTime in STANDBY queue for %s", item[NAME])
+                return (item[ID], {ID: item[ID], NAME: name, TIME: None})
+
             _LOGGER.debug("Time found")
             return (
                 item[ID],
